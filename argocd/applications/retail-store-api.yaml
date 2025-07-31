@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: retail-store-api
+  namespace: argocd
+spec:
+  project: retail-store
+  source:
+    repoURL: https://github.com/PrajwalBambulkar/Retail-Store-1
+    targetRevision: HEAD
+    path: api/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: retail-store
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
